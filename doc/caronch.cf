@@ -1,0 +1,43 @@
+--
+-- CARONCH Language definition
+-- 2015
+--
+
+-- test a file with :
+--
+-- bnfc -m --haskell caronch.cf && make && ./TestCaronch example.caronch
+--
+
+-- A Caronch is a set of items
+
+Crh     .   Caronch ::= [Item];
+
+-- Items are : Process, Data, Link
+
+SimpleProcess   .   Item ::=    "process"   Id;
+LabeldProcess   .   Item ::=    "process"   Id Label;
+Process         .   Item ::=    "process"   Id Label Name;
+SimpleData      .   Item ::=    "data"      Id;
+LabeldData      .   Item ::=    "data"      Id Label;
+Data            .   Item ::=    "data"      Id Label Name;
+Link            .   Item ::=    "link"      Id "->" Id;
+
+-- Helpers
+
+Lbl         .   Label ::= String;
+Nme         .   Name  ::= String;
+
+-- All tems must be finisehd by a semi-column ";"
+
+terminator  Item        ";" ;
+
+-- A valid identifier start by a letter followed by nore or + letter, digit.
+
+token       Id  letter (letter | digit | '_' | '\'')*;
+
+-- Define comments
+--
+-- comments are discarded by compiler.
+
+comment     "/*"    "*/"    ;
+comment     "//"            ;
