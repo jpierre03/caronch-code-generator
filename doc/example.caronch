@@ -7,14 +7,14 @@
 // -  Define process
 
 process p1;
-process p2 "a label";
+// NOT IMPLEMENTED -- process p2 "a label";
 process p3 "default generator, a label 3" "specific_name";
 
 
 // - Define data
 
 data d1;
-data d2 "avec label";
+// NOT IMPLEMENTED -- data d2 "avec label";
 data d3 "avec label 3" "data name";
 
 // - links
