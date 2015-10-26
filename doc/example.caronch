@@ -1,0 +1,26 @@
+// A single line comment
+
+/*
+    A multiline comment
+*/
+
+// -  Define process
+
+process p1;
+// NOT IMPLEMENTED -- process p2 "a label";
+// NOT IMPLEMENTED -- process p3 "default generator, a label 3" "specific_name";
+
+
+// - Define data
+
+data d1;
+// NOT IMPLEMENTED -- data d2 "avec label";
+// NOT IMPLEMENTED -- data d3 "avec label 3" "data name";
+
+// - links
+
+link p1 -> d1;
+link d1 -> p2;
+link p2 -> d3;
+link p3 -> d3;
+
