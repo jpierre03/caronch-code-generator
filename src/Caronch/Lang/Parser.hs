@@ -15,7 +15,9 @@ parseConfigFile :: FilePath -> String -> Either ParseError [Item]
 parseConfigFile filepath string = parse configFile filepath string
 
 -- Lexer
-languageDef = emptyDef { Token.commentLine = "#"
+languageDef = emptyDef { Token.commentLine = "//"
+                       , Token.commentStart = "/*"
+                       , Token.commentEnd = "*/"
                        , Token.identStart  = letter <|> oneOf "+_"
                        , Token.identLetter = alphaNum <|> oneOf ":!$%&*+.,/<=>?@\\^|-~_"
                        , Token.reservedNames     = ["define"]
