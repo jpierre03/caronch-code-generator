@@ -37,12 +37,14 @@ main = do
     print $ length errors
     --printArray 1 content
     putStrLn "Hello !"
+    printArray 1 files
+    printArray 2 objects
 
 search :: FilePath -> IO [FilePath]
 search = find always ( fileName ~~? pattern )
 
 normaliseComments :: String -> String
-normaliseComments = map (\ x -> if x == ';' then '#' else x)
+normaliseComments = map (\ x -> if x == ';' then ';' else x)
 
 zipParse :: [FilePath] -> [String] -> [Either ParseError [Item]]
 zipParse files content = zipWith parseConfigFile files content

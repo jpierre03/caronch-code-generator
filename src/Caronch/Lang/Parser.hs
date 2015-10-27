@@ -48,6 +48,8 @@ item_simple_process = do
     try $ do
         reserved "process"
     id <- identifier
+    try $ do
+        reserved ";"
     return $ (SimpleProcess id)
 
 item_simple_data :: Parsec String () Item
@@ -55,6 +57,8 @@ item_simple_data = do
     try $ do
         reserved "data"
     id <- identifier
+    try $ do
+        reserved ";"
     return $ (SimpleData id)
 
 item_link :: Parsec String () Item
@@ -65,5 +69,7 @@ item_link = do
     try $ do
         reserved "->"
     id' <- identifier
+    try $ do
+        reserved ";"
     return $ (Link id id')
 
