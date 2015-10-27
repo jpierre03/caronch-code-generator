@@ -20,10 +20,7 @@ main = do
     dir   <- getCurrentDirectory
     files <- search dir
     content <- mapM readFile files
-    let normalisedContent = map normaliseComments content
-        --objects = zipWith parseConfigFile files normalisedContent
-        objects = zipParse files normalisedContent
-    --let all = zip files objects
+    let objects = zipParse files content
     let all = assocSourceResult files objects
         errors = filter (\ (_,x) -> isLeft x) all
         goods = filter (\ (_,x) -> isRight x) all

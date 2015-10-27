@@ -10,11 +10,11 @@ import           Text.Parsec.Language
 import           Text.Parsec.String
 import qualified Text.Parsec.Token                as Token
 
---parseConfigFile :: (FilePath, String) -> Either ParseError [Item]
 parseConfigFile :: FilePath -> String -> Either ParseError [Item]
 parseConfigFile filepath string = parse configFile filepath string
 
--- Lexer
+-- * Lexer
+
 languageDef = emptyDef { Token.commentLine = "//"
                        , Token.commentStart = "/*"
                        , Token.commentEnd = "*/"
@@ -30,12 +30,12 @@ reserved   = Token.reserved   lexer -- parses a reserved name
 whiteSpace = Token.whiteSpace lexer -- parses whitespace
 braces     = Token.braces     lexer
 
--- Parser
+-- * Parser
+
 configFile :: Parser [Item]
 configFile = do
     whiteSpace
     list <- many item
-    --return $ catMaybes list
     return $ list
 
 item :: Parsec String () Item
