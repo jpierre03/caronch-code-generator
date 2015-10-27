@@ -64,7 +64,7 @@ item_simple_data = do
 item_link :: Parsec String () Item
 item_link = do
     try $ do
-        reserved "process"
+        reserved "link"
     id <- identifier
     try $ do
         reserved "->"
