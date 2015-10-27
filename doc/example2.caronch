@@ -1,0 +1,7 @@
+process p1;
+data d1;
+link p1 -> d1;
+link d1 -> p2;
+link p2 -> d3;
+link p3 -> d3;
+
