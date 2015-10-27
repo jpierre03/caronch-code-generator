@@ -20,7 +20,7 @@ languageDef = emptyDef { Token.commentLine = "//"
                        , Token.commentEnd = "*/"
                        , Token.identStart  = letter <|> oneOf "+_"
                        , Token.identLetter = alphaNum <|> oneOf ":!$%&*+.,/<=>?@\\^|-~_"
-                       , Token.reservedNames     = ["define"]
+                       , Token.reservedNames     = ["data", "process", "link", ";"]
                        }
 
 lexer = Token.makeTokenParser languageDef
