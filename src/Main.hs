@@ -32,10 +32,8 @@ main = do
     print . length . concat . rights $ objects
     putStr "    * Files with errors: "
     print $ length errors
-    --printArray 1 content
-    putStrLn "Hello !"
-    printArray 1 files
-    printArray 2 objects
+    putStrLn "* Raw data"
+    mapM_ printBoth goods
 
 search :: FilePath -> IO [FilePath]
 search = find always ( fileName ~~? pattern )
