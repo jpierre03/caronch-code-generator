@@ -2,10 +2,12 @@ module Main where
 
 import          Caronch.Lang.Data
 import          Caronch.Lang.Parser
+import          Caronch.Writer.Graphviz
 
 import           Data.Either
 import           Data.List                        hiding (find)
 import           Data.List.Split
+import           Data.Ord
 import           System.Directory
 import           System.Environment
 import           System.FilePath.Find
@@ -34,6 +36,8 @@ main = do
     print $ length errors
     putStrLn "* Raw data"
     mapM_ printBoth goods
+    putStrLn "* Graphviz'like"
+    mapM_ printGraphviz goods
 
 search :: FilePath -> IO [FilePath]
 search = find always ( fileName ~~? pattern )
@@ -53,5 +57,17 @@ printBoth (filepath, item) = do
     putStrLn filepath
     print item
     putStrLn ""
+
+printGraphviz :: (FilePath, Either ParseError [Item]) -> IO ()
+printGraphviz (filepath, items) = do
+    case items of
+        Left  items -> putStrLn $ filepath ++ " ERROR"
+        Right items -> putStrLn $ unlines $
+                [ "***** File: "
+                , filepath
+                , "***** Graphviz: "
+                , writeGraphviz items
+                , ""
+                ]
 
 printArray n arr = mapM_ (putStrLn . unwords) $ map (map show) $ chunksOf n arr
