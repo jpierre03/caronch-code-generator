@@ -25,10 +25,11 @@ languageDef = emptyDef { Token.commentLine = "//"
 
 lexer = Token.makeTokenParser languageDef
 
-identifier = Token.identifier lexer -- parses an identifier
-reserved   = Token.reserved   lexer -- parses a reserved name
-whiteSpace = Token.whiteSpace lexer -- parses whitespace
-braces     = Token.braces     lexer
+identifier      = Token.identifier      lexer -- parses an identifier
+reserved        = Token.reserved        lexer -- parses a reserved name
+whiteSpace      = Token.whiteSpace      lexer -- parses whitespace
+braces          = Token.braces          lexer
+symbol          = Token.symbol          lexer
 
 -- * Parser
 
@@ -40,7 +41,9 @@ configFile = do
 
 item :: Parsec String () Item
 item = item_simple_process
+    <|> item_process
     <|> item_simple_data
+    <|> item_data
     <|> item_link
 
 item_simple_process :: Parsec String () Item
@@ -52,6 +55,17 @@ item_simple_process = do
         reserved ";"
     return $ (SimpleProcess id)
 
+item_process :: Parsec String () Item
+item_process = do
+    try $ do
+        reserved "process"
+    id <- identifier
+    label <- stringL
+    name <- stringL
+    try $ do
+        reserved ";"
+    return $ (Process id label name)
+
 item_simple_data :: Parsec String () Item
 item_simple_data = do
     try $ do
@@ -60,6 +74,17 @@ item_simple_data = do
     try $ do
         reserved ";"
     return $ (SimpleData id)
+
+item_data :: Parsec String () Item
+item_data = do
+    try $ do
+        reserved "data"
+    id <- identifier
+    label <- stringL
+    name <- stringL
+    try $ do
+        reserved ";"
+    return $ (Data id label name)
 
 item_link :: Parsec String () Item
 item_link = do
@@ -73,3 +98,9 @@ item_link = do
         reserved ";"
     return $ (Link id id')
 
+stringL = do
+    char '\"' <|> char '"'
+    x <- many (noneOf "\"")
+    char '\"' <|> char '"'
+    --char '\"'
+    return $ x
