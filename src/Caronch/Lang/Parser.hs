@@ -37,17 +37,17 @@ configFile :: Parser [Item]
 configFile = do
     whiteSpace
     list <- many item
-    return $ list
+    return list
 
 item :: Parsec String () Item
-item = item_simple_process
-    <|> item_process
-    <|> item_simple_data
-    <|> item_data
-    <|> item_link
+item = itemSimpleProcess
+    <|> itemProcess
+    <|> itemSimpleData
+    <|> itemData
+    <|> itemLink
 
-item_simple_process :: Parsec String () Item
-item_simple_process = do
+itemSimpleProcess :: Parsec String () Item
+itemSimpleProcess = do
     try $
         reserved "process"
     id <- identifier
@@ -55,8 +55,8 @@ item_simple_process = do
         reserved ";"
     return $ SimpleProcess id
 
-item_process :: Parsec String () Item
-item_process = do
+itemProcess :: Parsec String () Item
+itemProcess = do
     try $
         reserved "process"
     id <- identifier
@@ -66,8 +66,8 @@ item_process = do
         reserved ";"
     return $ Process id label name
 
-item_simple_data :: Parsec String () Item
-item_simple_data = do
+itemSimpleData :: Parsec String () Item
+itemSimpleData = do
     try $
         reserved "data"
     id <- identifier
@@ -75,8 +75,8 @@ item_simple_data = do
         reserved ";"
     return $ SimpleData id
 
-item_data :: Parsec String () Item
-item_data = do
+itemData :: Parsec String () Item
+itemData = do
     try $
         reserved "data"
     id <- identifier
@@ -86,8 +86,8 @@ item_data = do
         reserved ";"
     return $ Data id label name
 
-item_link :: Parsec String () Item
-item_link = do
+itemLink :: Parsec String () Item
+itemLink = do
     try $
         reserved "link"
     id <- identifier

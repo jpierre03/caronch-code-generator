@@ -46,10 +46,10 @@ normaliseComments :: String -> String
 normaliseComments = map (\ x -> if x == ';' then ';' else x)
 
 zipParse :: [FilePath] -> [String] -> [Either ParseError [Item]]
-zipParse files content = zipWith parseConfigFile files content
+zipParse = zipWith parseConfigFile
 
 assocSourceResult :: [FilePath] -> [Either ParseError [Item]] -> [(FilePath, Either ParseError [Item])]
-assocSourceResult files objects = zip files objects
+assocSourceResult = zip
 
 printBoth :: (FilePath, Either ParseError [Item]) -> IO ()
 printBoth (filepath, item) = do
@@ -70,4 +70,4 @@ printGraphviz (filepath, items) = do
                 , ""
                 ]
 
-printArray n arr = mapM_ (putStrLn . unwords) $ map (map show) $ chunksOf n arr
+printArray n arr = mapM_ ((putStrLn . unwords) . map show) $ chunksOf n arr
