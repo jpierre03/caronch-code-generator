@@ -2,13 +2,13 @@ module Caronch.Lang.Parser where
 
 import           Caronch.Lang.Data
 
-import           Control.Monad.Identity           (Identity)
+import           Control.Monad.Identity (Identity)
 import           Data.Char
 import           Data.Maybe
 import           Text.Parsec
 import           Text.Parsec.Language
 import           Text.Parsec.String
-import qualified Text.Parsec.Token                as Token
+import qualified Text.Parsec.Token      as Token
 
 parseConfigFile :: FilePath -> String -> Either ParseError [Item]
 parseConfigFile filepath string = parse configFile filepath string

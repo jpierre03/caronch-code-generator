@@ -1,6 +1,6 @@
 module Caronch.Writer.Graphviz where
 
-import          Caronch.Lang.Data
+import           Caronch.Lang.Data
 
 writeGraphviz :: [Item] -> String
 writeGraphviz items = begin_gv ++ body_gv ++ end_gv

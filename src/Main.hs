@@ -1,11 +1,11 @@
 module Main where
 
-import          Caronch.Lang.Data
-import          Caronch.Lang.Parser
-import          Caronch.Writer.Graphviz
+import           Caronch.Lang.Data
+import           Caronch.Lang.Parser
+import           Caronch.Writer.Graphviz
 
 import           Data.Either
-import           Data.List                        hiding (find)
+import           Data.List               hiding (find)
 import           Data.List.Split
 import           Data.Ord
 import           System.Directory
