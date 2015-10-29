@@ -62,7 +62,7 @@ printGraphviz :: (FilePath, Either ParseError [Item]) -> IO ()
 printGraphviz (filepath, items) = do
     case items of
         Left  items -> putStrLn $ filepath ++ " ERROR"
-        Right items -> putStrLn $ unlines $
+        Right items -> putStrLn $ unlines
                 [ "***** File: "
                 , filepath
                 , "***** Graphviz: "

@@ -7,7 +7,7 @@ writeGraphviz items = begin_gv ++ body_gv ++ end_gv
     where body_gv = concatMap writeGraphviz' items
           begin_gv   = "digraph Caronch {" ++ eol ++ comments ++ eol
           end_gv     = "}" ++ eol
-          comments   = unlines $
+          comments   = unlines
                         [ "//"
                         , "// This model is generated through CARONCH formalism."
                         , "// To create a picture from this model, you need Graphviz :"

@@ -48,59 +48,59 @@ item = item_simple_process
 
 item_simple_process :: Parsec String () Item
 item_simple_process = do
-    try $ do
+    try $
         reserved "process"
     id <- identifier
-    try $ do
+    try $
         reserved ";"
-    return $ (SimpleProcess id)
+    return $ SimpleProcess id
 
 item_process :: Parsec String () Item
 item_process = do
-    try $ do
+    try $
         reserved "process"
     id <- identifier
     label <- stringL
     name <- stringL
-    try $ do
+    try $
         reserved ";"
-    return $ (Process id label name)
+    return $ Process id label name
 
 item_simple_data :: Parsec String () Item
 item_simple_data = do
-    try $ do
+    try $
         reserved "data"
     id <- identifier
-    try $ do
+    try $
         reserved ";"
-    return $ (SimpleData id)
+    return $ SimpleData id
 
 item_data :: Parsec String () Item
 item_data = do
-    try $ do
+    try $
         reserved "data"
     id <- identifier
     label <- stringL
     name <- stringL
-    try $ do
+    try $
         reserved ";"
-    return $ (Data id label name)
+    return $ Data id label name
 
 item_link :: Parsec String () Item
 item_link = do
-    try $ do
+    try $
         reserved "link"
     id <- identifier
-    try $ do
+    try $
         reserved "->"
     id' <- identifier
-    try $ do
+    try $
         reserved ";"
-    return $ (Link id id')
+    return $ Link id id'
 
 stringL = do
     char '\"' <|> char '"'
     x <- many (noneOf "\"")
     char '\"' <|> char '"'
     --char '\"'
-    return $ x
+    return x
