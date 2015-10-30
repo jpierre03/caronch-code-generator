@@ -20,11 +20,10 @@ writeGraphviz items = begin_gv ++ body_gv ++ end_gv
 writeGraphviz' :: Item -> String
 writeGraphviz' item =
     case item of
-        (Data  id _ _)    -> color_data ++ "data_"  ++ id ++ eol
-        (Process id _ _)  -> color_process ++ "process_" ++ id ++ eol
+        (Data  id label _)    -> color_data ++ id ++ "[label=\"" ++ label ++ "\"]" ++ eol
+        (Process id label _)  -> color_process ++ id ++ "[label=\"" ++ label ++ "\"]" ++ eol
         (Link id id')       -> id ++ " -> " ++ id' ++ eol
         _ -> "_ "
     where eol =";\n"
           color_data="node [shape=box,style=\"filled\",fillcolor=peachpuff]" ++ eol
           color_process="node [shape=ellipse,style=\"filled\",fillcolor=olivedrab1]" ++ eol
-
