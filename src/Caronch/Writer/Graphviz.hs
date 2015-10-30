@@ -20,8 +20,8 @@ writeGraphviz items = begin_gv ++ body_gv ++ end_gv
 writeGraphviz' :: Item -> String
 writeGraphviz' item =
     case item of
-        (SimpleData  id)    -> color_data ++ "data_"  ++ id ++ eol
-        (SimpleProcess id)  -> color_process ++ "process_" ++ id ++ eol
+        (Data  id _ _)    -> color_data ++ "data_"  ++ id ++ eol
+        (Process id _ _)  -> color_process ++ "process_" ++ id ++ eol
         (Link id id')       -> id ++ " -> " ++ id' ++ eol
         _ -> "_ "
     where eol =";\n"

@@ -53,7 +53,7 @@ itemSimpleProcess = do
     id <- identifier
     try $
         reserved ";"
-    return $ SimpleProcess id
+    return $ Process id id id
 
 itemProcess :: Parsec String () Item
 itemProcess = do
@@ -73,7 +73,7 @@ itemSimpleData = do
     id <- identifier
     try $
         reserved ";"
-    return $ SimpleData id
+    return $ Data id id id
 
 itemData :: Parsec String () Item
 itemData = do

@@ -2,11 +2,7 @@ module Caronch.Lang.Data where
 
 type Caronch = [Item]
 
-data Item   = SimpleProcess Id
---            | LabeldProcess Id Label
-            | Process Id Label Name
-            | SimpleData Id
---            | LabeldData Id Label
+data Item   = Process Id Label Name
             | Data Id Label Name
             | Link Id Id
             deriving (Show)
