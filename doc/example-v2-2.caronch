@@ -1,0 +1,19 @@
+/*
+ * A card deck randomizer
+ */
+
+// -- define declaration
+
+cartesian_product_x : ( card_families card_values ) -> ( card_deck )
+shuffle             : ( card_deck ) -> ( card_deck )
+display             : ( card_deck ) -> ()
+
+// define options
+
+cartesian_product_x { label = "Produit cartésien" }
+shuffle             { label = "Mélangeur de cartes" }
+display             { label = "Affiche un jeu de carte" }
+
+card_families       { label = "[Coeur..Treffle]" }
+card_values         { label = "[As..Roi]" }
+
