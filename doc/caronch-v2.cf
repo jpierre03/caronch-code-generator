@@ -33,6 +33,7 @@ KV_label    .   Propertie ::= "label"   "=" Value;
 
 (:[])       .   [Data]  ::= Data;
 (:)         .   [Data]  ::= Data [Data];
+terminator Data "";
 
 -- A valid identifier start by a letter followed by nore or + letter, digit.
 
