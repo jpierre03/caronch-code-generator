@@ -5,21 +5,21 @@
 
 -- test a file with :
 --
--- bnfc -m --haskell caronch-v2.cf && make && ./TestCaronchV example-v2.caronch
+-- bnfc -m --haskell caronch-v2.cf && make -j4 && ./TestCaronchV example-v2.caronch
 --
 
 -- A Caronch is a set of items
 
-Caronch     .   Caronch ::= [Item];
+TCaronch     .   Caronch ::= [Item];
 
 -- Items are : Process, Properties
 
 Process     .   Item ::=    Id ":" "(" [Data] ")" "->" "(" [Data] ")";
 Properties  .   Item ::=    Id "{" [Propertie] "}";
 
-Data        .   Data    ::= Id;
-Key         .   Key     ::= String;
-Value       .   Value   ::= String;
+TData        .   Data    ::= Id;
+TKey         .   Key     ::= String;
+TValue       .   Value   ::= String;
 
 KV          .   Propertie ::= Key       "=" Value;
 KV_label    .   Propertie ::= "label"   "=" Value;
