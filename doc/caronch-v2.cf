@@ -10,26 +10,29 @@
 
 -- A Caronch is a set of items
 
-Crh     .   Caronch ::= [Item];
+Caronch     .   Caronch ::= [Item];
 
--- Items are : Process, Data, Link
+-- Items are : Process, Properties
 
-SimpleProcess   .   Item ::=    "process"   Id;
-LabeldProcess   .   Item ::=    "process"   Id Label;
-Process         .   Item ::=    "process"   Id Label Name;
-SimpleData      .   Item ::=    "data"      Id;
-LabeldData      .   Item ::=    "data"      Id Label;
-Data            .   Item ::=    "data"      Id Label Name;
-Link            .   Item ::=    "link"      Id "->" Id;
+Process     .   Item ::=    Id ":" "(" [Data] ")" "->" "(" [Data] ")";
+Properties  .   Item ::=    Id "{" [Propertie] "}";
+
+Data        .   Data    ::= Id;
+Key         .   Key     ::= String;
+Value       .   Value   ::= String;
+
+KV          .   Propertie ::= Key       "=" Value;
+KV_label    .   Propertie ::= "label"   "=" Value;
 
 -- Helpers
+(:[])       .   [Item]  ::= Item;
+(:)         .   [Item]  ::= Item [Item];
 
-Lbl         .   Label ::= String;
-Nme         .   Name  ::= String;
+(:[])       .   [Propertie]  ::= Propertie;
+(:)         .   [Propertie]  ::= Propertie "," [Propertie];
 
--- All tems must be finisehd by a semi-column ";"
-
-terminator  Item        ";" ;
+(:[])       .   [Data]  ::= Data;
+(:)         .   [Data]  ::= Data [Data];
 
 -- A valid identifier start by a letter followed by nore or + letter, digit.
 
@@ -37,7 +40,7 @@ token       Id  letter (letter | digit | '_' | '\'')*;
 
 -- Define comments
 --
--- comments are discarded by compiler.
+-- comments are discarded by parser.
 
 comment     "/*"    "*/"    ;
 comment     "//"            ;

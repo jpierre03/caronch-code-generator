@@ -6,15 +6,15 @@ A multiline comment
 
 // A one line comment
 
-// -- define declarations
+// -- define declaration
 
-cartesian_product_x : (card_families card_values) -> ( card_deck )
-
+cartesian_product_self : ( a ) -> ( a_times_a )
+cartesian_product_x : ( card_families card_values ) -> ( card_deck )
 
 // define options
 
 cartesian_product_x { label = "Produit cartésien" }
 
-card_families       { label = "[Coeur...Treffle]" }
+card_families       { label = "[Coeur..Treffle]" }
 card_values         { label = "[As..Roi]" }
 
