@@ -5,7 +5,7 @@
 
 -- test a file with :
 --
--- bnfc -m --haskell caronch.cf && make && ./TestCaronch example.caronch
+-- bnfc -m --haskell caronch-v2.cf && make && ./TestCaronchV example-v2.caronch
 --
 
 -- A Caronch is a set of items
